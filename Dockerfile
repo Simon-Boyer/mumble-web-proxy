@@ -10,14 +10,14 @@ COPY Cargo.lock Cargo.lock ./
 COPY src ./src
 RUN rustup update nightly
 RUN rustup update stable
-RUN cargo install --path .
+RUN cargo build --release
 
 # Bundle Stage
 FROM rust:1.43.1-slim AS bundle
 WORKDIR /app
 RUN apt-get update && apt-get install -y libnice10 libglib2.0 && apt-get -qq clean
 
-COPY --from=builder /usr/local/cargo/bin/mumble-web-proxy .
+COPY --from=builder /usr/local/cargo/bin/mumble-web-proxy/target/release/mumble-web-proxy .
 COPY docker/start.sh .
 
 USER 1000
