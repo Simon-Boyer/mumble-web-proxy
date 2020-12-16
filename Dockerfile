@@ -8,6 +8,8 @@ RUN USER=root cargo new mumble-web-proxy
 COPY Cargo.toml Cargo.toml ./
 COPY Cargo.lock Cargo.lock ./
 COPY src ./src
+RUN rustup update nightly
+RUN rustup update stable
 RUN cargo install --path .
 
 # Bundle Stage
