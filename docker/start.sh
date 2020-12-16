@@ -18,4 +18,8 @@ if [ -n "$ICE_IPV6" ]; then
   CMD="$CMD --ice-ipv6 $ICE_IPV6";
 fi
 
+if [ -n "$ACCEPT_INVALID_CERTIFICATE" ]; then
+    CMD="$CMD --accept-invalid-certificate";
+fi
+
 eval "$CMD"
