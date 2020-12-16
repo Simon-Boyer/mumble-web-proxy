@@ -5,7 +5,8 @@ RUN apt-get update && apt-get install -y libnice-dev clang libssl-dev
 
 WORKDIR /usr/src/mumble-web-proxy
 RUN USER=root cargo new mumble-web-proxy
-COPY Cargo.toml Cargo.lock ./
+COPY Cargo.toml Cargo.toml ./
+COPY Cargo.lock Cargo.lock ./
 COPY src ./src
 RUN cargo install --path .
 
